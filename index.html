@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Catch me if you can</title>
+    <link rel="shortcut icon" href="images/rb.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <audio id="bgmusic">
+            <source src="audio/bg.ogg" type="audio/ogg">
+            <source src="audio/bg.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="caught">
+            <source src="audio/caught.ogg" type="audio/ogg">
+            <source src="audio/caught.mp3" type="audio/mpeg">
+        </audio>
+        <div class="score-board" id="scoreboard"><span>Score: <span id="score">0</span></span>
+        </div>
+        <div class="game-welcome-page" id="gamewindow">
+            <div class="game-welcome-body">
+                <div class="rabbit-image"><img src="images/rb.png"></div>
+                <div class="start-board"><a href="javascript:void(0);" onclick="start();">Start</a></div>
+            </div>
+        </div>
+        <div class="game-wrapper">
+            <div class="game-title">
+                <h1>Catch me if you can</h1>
+                <span class="timer"><span id="count">15</span> Sec</span>
+            </div>
+            <div class="game-window">
+                <div class="rabbit-holes item-1"><span class="rabbit" onclick="catught();"></span></div>
+                <div class="rabbit-holes item-2"><span class="rabbit" onclick="catught();"></span></div>
+                <div class="rabbit-holes item-3"><span class="rabbit" onclick="catught();"></span></div>
+                <div class="rabbit-holes item-4"><span class="rabbit" onclick="catught();"></span></div>
+                <div class="rabbit-holes item-5"><span class="rabbit" onclick="catught();"></span></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var bgmusic = document.getElementById("bgmusic");
+    var caught = document.getElementById("caught");
+    var rabbit = document.getElementsByClassName("rabbit-holes");
+    var score = 0;
+
+    function start() {
+        document.getElementById("gamewindow").classList.add("hide");
+        timer();
+        bgmusic.play();
+        document.getElementById("scoreboard").classList.add("active");
+    }
+
+    function myCallback() {
+        caught.play();
+        var order = Math.floor(Math.random() * rabbit.length);
+        rabbit[order].classList.add("active");
+        setTimeout(function() {
+            caught.currentTime = 0;
+            caught.pause();
+            for (var i = 0; i < rabbit.length; i++) {
+                rabbit[i].classList.remove("active");
+            }
+        }, 1000);
+    }
+
+    function catught() {
+        score = score + 1;
+        document.getElementById("score").innerHTML = score;
+    }
+    var timer = function() {
+        var intervalID = window.setInterval(myCallback, 2000);
+        var counter = 15;
+        setInterval(function() {
+            counter--;
+            if (counter >= 0) {
+                span = document.getElementById("count");
+                span.innerHTML = counter;
+            }
+            if (counter === 0) {
+                clearInterval(intervalID);
+                document.getElementById("scoreboard").classList.add("active");
+                setTimeout(function() {
+                    window.location.reload();
+                }, 5000);
+            }
+        }, 1000);
+    }
+    </script>
+</body>
+
+</html>

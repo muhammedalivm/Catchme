@@ -1,0 +1,239 @@
+body {
+    margin: 0;
+}
+
+.game-welcome-page {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: url(../images/jungle.jpg);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 4s ease-out;
+}
+
+.game-welcome-page.hide {
+    margin-top: -100%;
+}
+
+.game-welcome-body {
+    width: 500px;
+    height: 400px;
+    display: inline-block;
+}
+
+.rabbit-image {
+    width: 200px;
+    text-align: center;
+    display: block;
+    position: relative;
+    float: left;
+}
+
+.rabbit-image img {
+    width: 150px;
+    z-index: 99;
+}
+
+.rabbit-image:before {
+    width: 100%;
+    height: 50px;
+    content: "";
+    background: #2d0000;
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    z-index: -1;
+    border-radius: 100%;
+}
+
+.start-board {
+    background: url(../images/wood-street-sign-md.png) no-repeat;
+    background-position: center;
+    position: relative;
+    float: left;
+    width: 250px;
+    height: 300px;
+    margin-left: 50px;
+}
+
+.start-board a {
+    position: relative;
+    font-size: 30px;
+    color: #ffffff;
+    font-family: cursive;
+    font-weight: 900;
+    text-decoration: none;
+    transform: rotate(-14deg);
+    display: inline-block;
+    margin-top: 58px;
+    margin-left: 92px;
+}
+
+.game-wrapper {
+    background: url(../images/land.png) no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.game-title {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 30px 200px;
+    height: 115px;
+}
+
+.game-title h1 {
+    float: left;
+    font-size: 35px;
+    font-family: cursive;
+    color: #e4cea5;
+    text-shadow: 2px 1px #75605f;
+    margin: 50px 0 0;
+}
+
+.timer {
+    float: right;
+    background: url(../images/time.png) no-repeat;
+    width: 100px;
+    height: 90px;
+    background-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7px;
+    font-family: cursive;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 20px;
+    margin-top: -35px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.game-window {
+    position: relative;
+    width: 100%;
+    padding: 30px 20px;
+    display: flex;
+    max-width: 1240px;
+    margin: auto;
+    height: calc(100% - 115px);
+}
+
+.rabbit-holes {
+    position: absolute;
+    width: 100px;
+    height: 150px;
+    margin: 0 10px;
+    margin-top: 350px;
+    overflow: hidden;
+}
+
+.rabbit-holes:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: #d6a865;
+    bottom: 0;
+    border-radius: 100%;
+    border-top: 3px solid #b28f5f;
+}
+
+.rabbit {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 79px;
+    background: url(../images/rb.png) no-repeat;
+    background-size: 60px;
+    margin-bottom: -79px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.rabbit-holes.item-1 {
+    bottom: 270px;
+    left: 0;
+}
+
+.rabbit-holes.item-2 {
+    left: 200px;
+    bottom: 200px;
+}
+
+.rabbit-holes.item-3 {
+    left: 50%;
+}
+
+.rabbit-holes.item-4 {
+    left: 150px;
+    bottom: 30px;
+}
+
+.rabbit-holes.item-5 {
+    right: 180px;
+    bottom: 50px;
+}
+
+.rabbit-holes.active .rabbit {
+    margin-bottom: 0;
+}
+
+.score-board {
+    position: fixed;
+    left: 200px;
+    top: -2px;
+    /* bottom: 0; */
+    /* right: 0; */
+    display: block;
+    margin: auto;
+    width: 100px;
+    height: 66px;
+    transform: rotate(180deg);
+    z-index: 9;
+    background: url(../images/score.png) no-repeat;
+    background-size: 100px;
+    background-position: center bottom;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.6s ease-in;
+}
+
+.score-board.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.score-board:before {
+    content: none;
+    width: 60px;
+    height: 79px;
+    background: url(../images/rb.png) no-repeat;
+    background-size: 60px;
+    position: absolute;
+    top: -41px;
+    left: calc(50% - 30px);
+}
+
+.score-board>span {
+    font-size: 22px;
+    font-family: cursive;
+    color: #ffffff;
+    margin-top: 7px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    transform: rotate(-180deg);
+}
