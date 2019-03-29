@@ -6,6 +6,9 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
+    min-height: 720px;
+    min-width: 1200px;
+    max-width: 1600px;
     z-index: 99;
     background: url(../images/jungle.jpg);
     background-size: cover;
@@ -79,6 +82,9 @@ body {
     position: relative;
     width: 100%;
     height: 100vh;
+    min-width: 1200px;
+    max-width: 1600px;
+    min-height: 720px;
 }
 
 .game-title {
@@ -127,6 +133,7 @@ body {
     max-width: 1240px;
     margin: auto;
     height: calc(100% - 115px);
+    min-width: 1200px;
 }
 
 .rabbit-holes {
@@ -236,4 +243,40 @@ body {
     width: 100%;
     text-align: center;
     transform: rotate(-180deg);
+}
+
+.final-score {
+    position: absolute;
+    top: -100%;
+    left: calc(50% - 150px);
+    width: 200px;
+    height: 200px;
+    background: url(../images/monkey.png) no-repeat;
+    background-size: 100%;
+    z-index: 9;
+    transition: 0.6s ease;
+    font-size: 20px;
+    font-family: cursive;
+}
+
+.final-score.active {
+    top: -26px;
+}
+
+.final-score .score {
+    position: absolute;
+    left: 40px;
+    bottom: -52px;
+    width: 150px;
+    height: 75px;
+    background: url(../images/score_1.png) no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 100%;
+    color: #ffffff;
+}
+
+#finalScore {
+    margin-left: 2px;
 }

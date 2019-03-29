@@ -10,15 +10,24 @@
 <body>
     <div class="wrapper">
         <audio id="bgmusic">
-            <source src="audio/bg.ogg" type="audio/ogg">
             <source src="audio/bg.mp3" type="audio/mpeg">
         </audio>
         <audio id="caught">
-            <source src="audio/caught.ogg" type="audio/ogg">
             <source src="audio/caught.mp3" type="audio/mpeg">
         </audio>
-        <div class="score-board" id="scoreboard"><span>Score: <span id="score">0</span></span>
+        <audio id="clap">
+            <source src="audio/clap.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="no">
+            <source src="audio/no.wav" type="audio/wav">
+        </audio>
+        <audio id="point">
+            <source src="audio/point.mp3" type="audio/mpeg">
+        </audio>
+        <div class="score-board" id="scoreboard">
+            <span>Score: <span id="score">0</span></span>
         </div>
+        <div class="final-score" id="finalScoreboard"><span class="score">Your Score: <span id="finalScore"> 0</span></span></div>
         <div class="game-welcome-page" id="gamewindow">
             <div class="game-welcome-body">
                 <div class="rabbit-image"><img src="images/rb.png"></div>
@@ -42,6 +51,9 @@
     <script type="text/javascript">
     var bgmusic = document.getElementById("bgmusic");
     var caught = document.getElementById("caught");
+    var clap = document.getElementById("clap");
+    var no = document.getElementById("no");
+    var point = document.getElementById("point");
     var rabbit = document.getElementsByClassName("rabbit-holes");
     var score = 0;
 
@@ -67,6 +79,7 @@
 
     function catught() {
         score = score + 1;
+        point.play();
         document.getElementById("score").innerHTML = score;
     }
     var timer = function() {
@@ -80,7 +93,15 @@
             }
             if (counter === 0) {
                 clearInterval(intervalID);
+                console.log();
                 document.getElementById("scoreboard").classList.add("active");
+                document.getElementById("finalScoreboard").classList.add("active");
+                document.getElementById("finalScore").innerHTML = document.getElementById("score").innerText;
+                if(parseInt(document.getElementById("score").innerText) > 3) {
+                    clap.play();
+                } else {
+                    no.play();
+                }
                 setTimeout(function() {
                     window.location.reload();
                 }, 5000);
